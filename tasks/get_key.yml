@@ -1,0 +1,20 @@
+---
+- name: download ondrej/php ppa key
+  command: gpg --keyserver keyserver.ubuntu.com --recv 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+  register: ondrej_ppa_key_result
+  changed_when: "'unchanged: 1' not in ondrej_ppa_key_result.stderr"
+  sudo: yes
+
+- name: write ondrej ppa key to /root
+  command: gpg --output /root/ondrej_ppa.gpg --export 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+  args:
+    creates: /root/ondrej_ppa.gpg
+  sudo: yes
+
+- name: add ondrej ppa key to apt-key
+  apt_key: file=/root/ondrej_ppa.gpg
+  sudo: yes
+
+- name: apt-get update
+  apt: update_cache=true cache_valid_time=3600
+  sudo: yes

@@ -1,0 +1,17 @@
+## Customize the test machine
+machine:
+   services:
+      - docker
+
+   # Version of ruby to use
+   ruby:
+      version:
+         2.3.1
+
+test:
+   override:
+      - >
+        wget -qO- bit.ly/ansibletest | env
+        DOCKER_IMAGES="ubuntu:14.04"
+        ANSIBLE_VERSIONS="2.2.1.0"
+        sh

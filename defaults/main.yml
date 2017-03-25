@@ -1,0 +1,11 @@
+---
+php56_fpm_listen: 127.0.0.1:9000
+php56_pool_name: www
+php56_unix_user: www-data
+php56_unix_group: www-data
+# PHP process manager settings
+php56_pm_style: dynamic
+php56_pm_max_children: 5
+php56_pm_start_servers: 2
+php56_pm_min_spare_servers: 1
+php56_pm_max_spare_servers: 3
