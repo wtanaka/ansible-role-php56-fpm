@@ -10,6 +10,7 @@
   template: >
     src=php-fpm.conf.j2
     dest=/etc/php/5.6/fpm/php-fpm.conf
+  notify: restart php5.6-fpm
 
 - name: config file
   sudo: True
@@ -22,8 +23,8 @@
   template: >
     src=www.conf.j2
     dest=/etc/php/5.6/fpm/pool.d/www.conf
+  notify: restart php5.6-fpm
 
-- name: ensure php5.6-fpm is running (and enable it at boot)
+- name: enable php5.6-fpm on boot
   sudo: yes
-  service: name=php5.6-fpm state=started enabled=yes
-  changed_when: False
+  service: name=php5.6-fpm enabled=yes
