@@ -12,11 +12,14 @@
     dest=/etc/php/5.6/fpm/php-fpm.conf
   notify: restart php5.6-fpm
 
-- name: config file
+- name: config file dir, run dir
   sudo: True
   file:
-    path: /etc/php/5.6/fpm/pool.d/
+    path: "{{item}}"
     state: directory
+  with_items:
+  - /etc/php/5.6/fpm/pool.d/
+  - /run/php
 
 - name: config file
   sudo: True
