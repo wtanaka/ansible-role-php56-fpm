@@ -31,3 +31,11 @@
 - name: enable php5.6-fpm on boot
   sudo: yes
   service: name=php5.6-fpm enabled=yes
+
+# workaround
+# "msg": "no service or tool found for: php-fpm5.6"
+# when we try to use state=started
+- name: start php5.6-fpm
+  command: /etc/init.d/php5.6-fpm start
+  sudo: yes
+  changed_when: false
