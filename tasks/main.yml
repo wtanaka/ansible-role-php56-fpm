@@ -37,5 +37,7 @@
 # when we try to use state=started
 - name: start php5.6-fpm
   command: /etc/init.d/php5.6-fpm start
+  register: start_result
   sudo: yes
-  changed_when: false
+  changed_when: "'already running' not in start_result.stderr and '' != start_result.stderr"
+  failed_when: False
