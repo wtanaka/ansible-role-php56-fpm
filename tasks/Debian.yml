@@ -15,7 +15,3 @@
   apt: update_cache=true cache_valid_time=0
   when: sources_list_result.changed
   sudo: yes
-
-- name: Install php5.6-fpm
-  apt: name=php5.6-fpm
-  sudo: yes
